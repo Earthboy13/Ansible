@@ -1,0 +1,8 @@
+[windows_server]
+EARTHBOY13-PC
+
+[windows_server:vars]
+ansible_user=Earthboy13
+ansible_password=pass
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore

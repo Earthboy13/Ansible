@@ -1,0 +1,24 @@
+-
+ name:  Hibernate Computer
+ hosts: EARTHBOY13-PC
+
+ tasks:
+    - name: Copy a single file
+      win_copy:
+        src: '{{ item }}'
+        dest: D:\Anisible\bat\{{ item }}
+      with_items:
+           - del.bat
+           - hiber.bat
+    - name: Start Hibernation
+      win_scheduled_task:
+        name: adhoc-task
+        username: Earthboy13
+        run_level: highest
+        actions:
+        - path: hiber.bat
+          working_directory: D:\Anisible\bat
+        triggers:
+        - type: registration
+        stop_if_going_on_batteries: no
+        disallow_start_if_on_batteries: no

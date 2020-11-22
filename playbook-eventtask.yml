@@ -1,0 +1,23 @@
+-
+ name:  Event Clean-up
+ hosts: EARTHBOY13-PC
+
+ tasks:
+    - name: Delete other ansible tasks 
+      win_scheduled_task:
+        name: Anisible-Event-Controler
+        username: Earthboy13
+        run_level: highest
+        actions:
+        - path: del.bat
+          working_directory: D:\Anisible\bat
+        triggers:
+        - type: event
+        - subscription: |
+            <QueryList>
+              <Query Id="0" Path="Microsoft-Windows-TaskScheduler/Operational">
+                <Select Path="Microsoft-Windows-TaskScheduler/Operational">*[EventData[@Name='TaskSuccessEvent'][Data[@Name='TaskName']='\adhoc-task']]</Select>
+              </Query>
+            </QueryList>
+        stop_if_going_on_batteries: no
+        disallow_start_if_on_batteries: no

@@ -1,0 +1,10 @@
+version: '3'
+services:
+    WebApp:
+        image: centos
+        ports:
+            - 5000:80
+        networks:
+            - ansible-network
+networks:
+    ansible-network:

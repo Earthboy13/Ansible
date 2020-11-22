@@ -1,0 +1,13 @@
+-
+ name:  Copy Playbook
+ hosts: windows_servers
+
+ tasks:
+    - name: Copy a single file
+      win_copy:
+        src: D:\Anisible\{{ item }}
+        dest: '{{ item }}'
+        remote_src: true
+      with_items:
+           - playbooks\playbook-bind.yml
+

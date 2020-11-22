@@ -1,0 +1,25 @@
+all:
+    hosts:
+        all_servers:
+    children:
+        linux_servers:
+            hosts:
+                minion1:
+                    ansible_host: minion1
+                    ansible_user: root
+                minion2:
+                    ansible_host: minion2
+                    ansible_user: root
+        windows_servers:
+            hosts:
+                EARTHBOY13-PC:
+                    ansible_user: Administrator
+                    ansible_host: 192.168.0.100
+                    ansible_password: Welcome@123
+                    #ansible_winrm_cert_pem: cer.pem
+                    #ansible_winrm_cert_key_pem: rsa.pem
+                    ansible_connection: winrm
+                    ansible_port: 5985
+                    ansible_winrm_message_encryption: auto
+                    ansible_winrm_transport: ntlm #certificate
+                    

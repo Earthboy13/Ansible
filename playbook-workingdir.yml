@@ -1,0 +1,9 @@
+-
+ name:  Create Working Directory
+ hosts: EARTHBOY13-PC
+
+ tasks:
+    - name: Create directory structure
+      win_file:
+        path: D:\Anisible\bat
+        state: directory

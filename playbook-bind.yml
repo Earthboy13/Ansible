@@ -1,0 +1,13 @@
+-
+        name:  Intall on minions
+        hosts: linux_servers
+
+        tasks:
+                - name: install the latest version of BIND
+                  dnf:
+                        name: "{{ packages }}"
+                        state: latest
+                  vars:
+                        packages:
+                                - bind
+                                - bind-utils

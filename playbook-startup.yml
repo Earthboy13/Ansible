@@ -1,0 +1,31 @@
+-
+ name:  Start up minions
+ hosts: windows_servers
+
+ tasks:
+    - name: Copy a single file
+      win_copy:
+        src: '{{ item }}'
+        dest: D:\Anisible\bat\{{ item }}
+      with_items:
+           - del.bat
+    - name: Start Minon1
+      win_scheduled_task:
+        name: adhoc-task
+        username: Earthboy13
+        run_level: highest
+        actions:
+        - path: run.bat
+          working_directory: D:\Users\Earthboy13\VirtualBox VMs\start-in-back\Minion1
+        triggers:
+        - type: registration
+    - name: Start Minon2
+      win_scheduled_task:
+        name: adhoc-task
+        username: Earthboy13
+        run_level: highest
+        actions:
+        - path: run.bat
+          working_directory: D:\Users\Earthboy13\VirtualBox VMs\start-in-back\Minion2
+        triggers:
+        - type: registration
